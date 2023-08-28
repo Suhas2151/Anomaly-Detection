@@ -1,11 +1,11 @@
 import streamlit as st
 import pandas as pd
 import re
-import joblib
+import  pickle
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 
 # Load the trained Random Forest model
-loaded_random_forest_model = joblib.load('random_forest_model.joblib')
+loaded_random_forest_model = pickle.load('random_forest_model.pkl')
 
 # Function to preprocess the log data
 def preprocess_log(log_text):
