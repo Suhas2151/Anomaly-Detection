@@ -5,7 +5,7 @@ import  pickle
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 
 # Load the trained Random Forest model
-loaded_random_forest_model = pickle.load('random_forest_model.pkl')
+loaded_random_forest_model = pickle.load(open('random_forest_model.pkl', 'rb'))
 
 # Function to preprocess the log data
 def preprocess_log(log_text):
