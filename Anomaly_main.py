@@ -10,13 +10,13 @@ loaded_random_forest_model = pickle.load(open('random_forest_model.pkl', 'rb'))
 # Function to preprocess the log data
 def preprocess_log(log_text,protocol, user_agent):
     ip_pattern = r'(^\S+\.[\S+\.]+\S+)\s'
-    timestamp_pattern = r'\[(\d{2}/\w+/\d{4}:\d{2}:\d{2}:\d{2} \+\d{4})\]'
-    request_pattern = r'\"(\S+)\s(\S+)\s*(\S*)\"'
-    status_pattern = r'(\d{3})'
-    size_pattern = r'\s(\d+) "'
-    user_agent_pattern = r'"([^"]+)"'
-    protocol_pattern = r'HTTP/([\d.]+)'
-    browser_pattern = r'"([^"]+)"$'
+timestamp_pattern = r'\[(\d{2}/\w+/\d{4}:\d{2}:\d{2}:\d{2} \+\d{4})\]'
+request_pattern = r'\"(\S+)\s(\S+)\s*(\S*)\"'
+status_pattern = r'(\d{3})'
+size_pattern = r'\s(\d+) "'
+user_agent_pattern = r'"([^"]+)"'
+protocol_pattern = r'HTTP/([\d.]+)'
+browser_pattern = r'"([^"]+)"$'
     
     ip = re.search(ip_pattern, log_text).group(1)
     timestamp = re.search(timestamp_pattern, log_text).group(1)
