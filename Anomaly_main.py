@@ -8,7 +8,7 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 loaded_random_forest_model = pickle.load(open('random_forest_model.pkl', 'rb'))
 
 # Function to preprocess the log data
-def preprocess_log(log_text):
+def preprocess_log(log_text,protocol, user_agent):
     ip_pattern = r'(^\S+\.[\S+\.]+\S+)\s'
     timestamp_pattern = r'\[(\d{2}/\w+/\d{4}:\d{2}:\d{2}:\d{2} \+\d{4})\]'
     request_pattern = r'\"(\S+)\s(\S+)\s*(\S*)\"'
