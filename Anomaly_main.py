@@ -3,7 +3,7 @@ import pandas as pd
 import re
 import  pickle
 from sklearn.preprocessing import StandardScaler, LabelEncoder
-
+import ipaddress
 # Load the trained Random Forest model
 loaded_random_forest_model = pickle.load(open('random_forest_model.pkl', 'rb'))
 
@@ -18,9 +18,11 @@ def preprocess_log(log_text,protocol, user_agent):
     protocol_pattern = r'HTTP/([\d.]+)'
     browser_pattern = r'"([^"]+)"$'
     
-    ip = re.search(ip_pattern, log_text).group(1)
+    ip_str = re.search(ip_pattern, log_text).group(1)
     timestamp = re.search(timestamp_pattern, log_text).group(1)
     request_line = re.search(request_pattern, log_text).group(1)
+    status_code = re.search(status_pattern, log_text).group(1)
+    size = re.search(size_pattern, log_text).group(1)
     # ... extract other features ...
     
     # Apply label encoding to categorical features
@@ -31,7 +33,10 @@ def preprocess_log(log_text,protocol, user_agent):
     # ... apply encoding for other features ...
     
     # Convert IP address to numeric value
-    ip_numeric = convert_ip_to_numeric(ip)
+   
+    def convert_ip_to_numeric(ip_str):
+        ip = ipaddress.ip_address(ip_str)
+    return int(ip)
     
     # Return the processed features as a list
     processed_features = [ip_numeric, timestamp, request_line, protocol_encoded, user_agent_encoded, ...]
