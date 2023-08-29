@@ -29,7 +29,7 @@ def preprocess_log(log_text):
     # Convert IP address to numeric value
     def convert_ip_to_numeric(ip):
     # Split the IP address into its components (octets)
-    octets = ip.split('.')
+             octets = ip.split('.')
     
     # Convert each octet to an integer and calculate the numeric value
     numeric_value = 0
