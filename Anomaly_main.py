@@ -77,3 +77,26 @@ elif selected_tab == "Anomaly Detection":
                 st.write("Prediction: Normal")
             else:
                 st.write("Prediction: Anomaly")
+
+if st.button("Detect Anomaly"):
+        if user_input:
+            try:
+                # Preprocess the user input
+                processed_features = preprocess_log(user_input)
+                
+                # Convert the processed features into a DataFrame
+                features_df = pd.DataFrame([processed_features])
+                
+                # Apply scaling if needed
+                scaler = StandardScaler()
+                processed_features_scaled = scaler.transform(features_df)
+                
+                # Make prediction using the loaded model
+                predicted_label = loaded_random_forest_model.predict(processed_features_scaled)[0]
+                
+                if predicted_label == 0:
+                    st.write("Prediction: Normal")
+                else:
+                    st.write("Prediction: Anomaly")
+            except Exception as e:
+                st.write("An error occurred:", e)
