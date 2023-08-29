@@ -27,7 +27,17 @@ def preprocess_log(log_text):
     # ... extract other features ...
     
     # Convert IP address to numeric value
-    ip_numeric = convert_ip_to_numeric(ip)
+    def convert_ip_to_numeric(ip):
+    # Split the IP address into its components (octets)
+    octets = ip.split('.')
+    
+    # Convert each octet to an integer and calculate the numeric value
+    numeric_value = 0
+    for i, octet in enumerate(octets):
+        numeric_value += int(octet) * (256 ** (3 - i))
+    
+    return numeric_value
+
     
     # Extract date, hour, minute, seconds from the timestamp
     # ... perform necessary extraction ...
